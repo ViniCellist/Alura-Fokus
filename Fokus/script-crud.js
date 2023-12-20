@@ -30,9 +30,12 @@ function createElementTask(task) {
 
     btn.onclick = () => {
         const newDescription = prompt("Qual é o novo nome da tarefa?")
-        paragraph.textContent = newDescription
-        task.descriptionTask = newDescription
-        updateTask()
+        if (newDescription) {
+            paragraph.textContent = newDescription
+            task.descriptionTask = newDescription
+            updateTask()
+        }
+        
     }
 
     const btnImage = document.createElement('img')
