@@ -4,6 +4,11 @@ const formRemoveTask = document.querySelector('.app__form-footer__button--cancel
 const textArea = document.querySelector('.app__form-textarea')
 const ulTask = document.querySelector('.app__section-task-list')
 
+const cleanForm = () => {
+    textArea.value = ''
+    formAddTask.classList.add('hidden')
+}
+
 const tasks = JSON.parse(localStorage.getItem('tasks')) || []
 
 function updateTask() {
@@ -67,10 +72,7 @@ formAddTask.addEventListener('submit', (event) => {
     formAddTask.classList.add('hidden')
 })
 
-formRemoveTask.addEventListener('click', () => {
-    textArea.value = ''
-    formAddTask.classList.add('hidden')
-})
+formRemoveTask.addEventListener('click', cleanForm)
 
 tasks.forEach(task => {
     const elementTask = createElementTask(task)
