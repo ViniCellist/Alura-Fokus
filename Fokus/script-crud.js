@@ -3,6 +3,7 @@ const formAddTask = document.querySelector('.app__form-add-task')
 const formRemoveTask = document.querySelector('.app__form-footer__button--cancel')
 const textArea = document.querySelector('.app__form-textarea')
 const ulTask = document.querySelector('.app__section-task-list')
+const paragraphDescriptionTask = document.querySelector('.app__section-active-task-description')
 
 const cleanForm = () => {
     textArea.value = ''
@@ -10,6 +11,8 @@ const cleanForm = () => {
 }
 
 const tasks = JSON.parse(localStorage.getItem('tasks')) || []
+let taskSelect = null
+let liTaskSelect = null
 
 function updateTask() {
     localStorage.setItem('tasks', JSON.stringify(tasks))
@@ -52,6 +55,24 @@ function createElementTask(task) {
     li.append(paragraph)
     li.append(btn)
 
+    li.onclick = () => {
+        document.querySelectorAll('app__section-task-list-item-active')
+            .forEach(element => {
+                element.classList.remove('app__section-task-list-item-active')
+            })
+        if (taskSelect == task) {
+            paragraphDescriptionTask.textContent = ''
+            taskSelect = null
+            liTaskSelect = null
+            return
+        }
+        taskSelect = task
+        liTaskSelect = li
+        paragraphDescriptionTask.textContent = task.descriptionTask
+        li.classList.add('app__section-task-list-item-active')
+
+    }
+
     return li
 }
 
@@ -77,4 +98,12 @@ formRemoveTask.addEventListener('click', cleanForm)
 tasks.forEach(task => {
     const elementTask = createElementTask(task)
     ulTask.append(elementTask)
+})
+
+document.addEventListener('FocoFinished', () => {
+    if (taskSelect && liTaskSelect) {
+        liTaskSelect.classList.remove('app__section-task-list-item-active')
+        liTaskSelect.classList.add('app__section-task-list-item-complete')
+        liTaskSelect.querySelector('button').setAttribute('disabled', 'disabled')
+    }
 })
