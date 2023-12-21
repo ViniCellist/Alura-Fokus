@@ -73,6 +73,11 @@ const regressive = () => {
     if(crono <= 0){
         timeC.play()
         alert('Tempo Finalizado!')
+        const focoActive = html.getAttribute('data-contexto') == 'foco'
+        if (focoActive) {
+            const event = new CustomEvent('FocoFinished')
+            document.dispatchEvent(event)
+        }
         zero()
         return
     }
