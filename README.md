@@ -1,4 +1,4 @@
-# ALura - Projeto Fokus
+# Alura - Projeto Fokus
 
 Esta é a solução final para o projeto.
 
@@ -18,21 +18,21 @@ Foi uma experiência única trabalhar neste projeto, pois foi tanto quanto um de
 ### O Desafio
 
 O projeto foi divido em duas etapas:
-- Primeiro a alteração dinâmica da página a escolha do usuário quanto aos botôes descanso curto, descanso longo e foco;
-- Segundamente a implementação e manipulação do formulário para a imersão do usuário
+- Primeiro a alteração dinâmica da página a escolha do usuário quanto aos botões descanso curto, descanso longo e foco;
+- Segundamente a implementação e manipulação do formulário para a imersão do usuário.
 
 ## Meu processo
 
 - script.js
-  - Foi definido `const` recebendo os seletores diretamente do HTML.
-  - Por estes seletores foram feitas alterações, remoções e adições sobre as classes compostas do HTML, a qual trabalhava dinâmicamente com o CSS;.
-  - Ou seja, cada vez que uma `const` tinha seu estado alterado pela interação do usuário sobre a página, sua característica mudava.
-  - Também foi posta a interação dos sons sobre as ações do usuário.
-  - Juntando tudo isso a atualização dinâmica do contador sobre a opção desejada do usuário.
+  - Foi definido `const` recebendo os seletores diretamente do HTML;
+  - Por estes seletores foram feitas alterações, remoções e adições sobre as classes compostas do HTML, a qual trabalhava dinâmicamente com o CSS;
+  - Ou seja, cada vez que uma `const` tinha seu estado alterado pela interação do usuário sobre a página, sua característica mudava;
+  - Também foi posta a interação dos sons sobre as ações do usuário;
+  - Juntando tudo isso a atualização dinâmica do contador sobre a opção desejada do usuário;
 - script-crud.js
-  - Implantação do formulário
-  - Utilizando as manipulações do DOM sobre os elementos HTML, foi possivel: adicionar, excluir e editar.
-  - As informações impostas pelo usuário são salvas diretamente no LocalStorage.
+  - Implantação do formulário;
+  - Utilizando as manipulações do DOM sobre os elementos HTML, foi possivel: adicionar, excluir e editar;
+  - As informações impostas pelo usuário são salvas diretamente no LocalStorage;
 
 ### Estrutura
 
