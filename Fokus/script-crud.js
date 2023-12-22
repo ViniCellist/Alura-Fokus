@@ -5,12 +5,15 @@ const textArea = document.querySelector('.app__form-textarea')
 const ulTask = document.querySelector('.app__section-task-list')
 const paragraphDescriptionTask = document.querySelector('.app__section-active-task-description')
 
+const btnRemoveComplete = document.querySelector('#btn-remover-concluidas')
+const btnRemoveAll = document.querySelector('#btn-remover-todas')
+
 const cleanForm = () => {
     textArea.value = ''
     formAddTask.classList.add('hidden')
 }
 
-const tasks = JSON.parse(localStorage.getItem('tasks')) || []
+let tasks = JSON.parse(localStorage.getItem('tasks')) || []
 let taskSelect = null
 let liTaskSelect = null
 
@@ -55,22 +58,27 @@ function createElementTask(task) {
     li.append(paragraph)
     li.append(btn)
 
-    li.onclick = () => {
-        document.querySelectorAll('app__section-task-list-item-active')
-            .forEach(element => {
-                element.classList.remove('app__section-task-list-item-active')
-            })
-        if (taskSelect == task) {
-            paragraphDescriptionTask.textContent = ''
-            taskSelect = null
-            liTaskSelect = null
-            return
+    if (task.complete) {
+        li.classList.add('app__section-task-list-item-complete')
+        btn.setAttribute('disabled', 'disabled')
+    } else {
+        li.onclick = () => {
+            document.querySelectorAll('app__section-task-list-item-active')
+                .forEach(element => {
+                    element.classList.remove('app__section-task-list-item-active')
+                })
+            if (taskSelect == task) {
+                paragraphDescriptionTask.textContent = ''
+                taskSelect = null
+                liTaskSelect = null
+                return
+            }
+            taskSelect = task
+            liTaskSelect = li
+            paragraphDescriptionTask.textContent = task.descriptionTask
+            li.classList.add('app__section-task-list-item-active')
+    
         }
-        taskSelect = task
-        liTaskSelect = li
-        paragraphDescriptionTask.textContent = task.descriptionTask
-        li.classList.add('app__section-task-list-item-active')
-
     }
 
     return li
@@ -105,5 +113,23 @@ document.addEventListener('FocoFinished', () => {
         liTaskSelect.classList.remove('app__section-task-list-item-active')
         liTaskSelect.classList.add('app__section-task-list-item-complete')
         liTaskSelect.querySelector('button').setAttribute('disabled', 'disabled')
+        taskSelect.complete = true
+        updateTask()
     }
 })
+
+const removeTask = (onlyComplete) => {
+    let selector = ".app__section-task-list-item"
+    if (onlyComplete) {
+        selector = ".app__section-task-list-item-complete"
+    }
+
+    document.querySelectorAll(selector).forEach(element => {
+        element.remove()
+    })
+    tasks = onlyComplete ? tasks.filter(tasks => !tasks.complete) : []
+    updateTask()
+}
+
+btnRemoveComplete.onclick = () => removeTask(true)
+btnRemoveAll.onclick = () => removeTask(false)
