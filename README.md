@@ -56,5 +56,5 @@ function updateTask() {
 
 ## Autor
 
-- Perfil LinkedIn - [Vinicius Duarte](https://www.linkedin.com/in/vinicius-de-souza-duarte-57937b192/)
+- Perfil LinkedIn - [Vinicius Duarte](https://www.linkedin.com/in/viniciussouzaduarte/)
 - Instagram - [@vinicius_duartesd](https://www.instagram.com/vinicius_duartesd/)
